@@ -54,7 +54,7 @@
 <body>
     <div class="container">
         <figure class="logo">
-            <img src="https://www.dellasantapsicologo.it/img/Logo.png" alt="logo">
+            <img src="https://www.dellasantapsicologo.it/images/Logo.png" alt="logo">
         </figure>
         <p>
             Salve, cliccando su questo link potrà iniziare la compilazione dei questionari necessari per portare avanti
@@ -62,7 +62,7 @@
             toccando/cliccando sull'apposito pulsante, riguarderemo le domande assieme in seduta. Buon lavoro.
         </p>
 
-        <a class="link" href="{{ $link }}">
+        <a class="link" href="{{ $data['link'] }}">
             <div>LINK</div>
         </a>
 

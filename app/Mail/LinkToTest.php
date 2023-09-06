@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactForm extends Mailable
+class LinkToTest extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,8 +28,7 @@ class ContactForm extends Mailable
      */
     public function build()
     {
-        return $this->subject('Un paziente ti ha scritto')
-            ->replyTo($this->data['mail'], $this->data['name'])
-            ->view('emails.contact-form');
+        return $this->subject($this->data['subject'])
+            ->view('emails.link-to-test');
     }
 }

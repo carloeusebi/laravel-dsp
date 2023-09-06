@@ -23,22 +23,31 @@ class MailController extends Controller
     }
 
 
-    // public function sendEmailWithTestLink(Request $request)
-    // {
-    //     $data = $request->all();
-    //     $emailTo = env('MAIL_TO');
+    public function sendEmailWithTestLink(Request $request)
+    {
+        $request->validate([
+            'email_to' => 'required|email',
+            'subject' => 'required',
+            'link' => 'required|url'
+        ]);
+        $data = $request->all();
+        $emailTo = env('MAIL_TO');
 
-    //     Mail::to($emailTo)->send(new LinkToTest($data));
-    // }
+        Mail::to($emailTo)->send(new LinkToTest($data));
+    }
 
 
-    // public function contactSupport(ContactSupportRequest $request)
-    // {
-    //     $data = $request->all();
-    //     $emailTo = env('MAIL_TO');
+    public function contactSupport(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'issue' => 'required'
+        ]);
+        $data = $request->all();
+        $emailTo = env('MAIL_TO');
 
-    //     Mail::to($emailTo)
-    //         ->cc('carloeusebi@gmail.com')
-    //         ->send(new ContactSupportMail($data));
-    // }
+        Mail::to($emailTo)
+            ->cc('carloeusebi@gmail.com')
+            ->send(new ContactSupportMail($data));
+    }
 }
