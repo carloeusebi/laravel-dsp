@@ -16,7 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('email', 80)->unique();
             $table->timestamp('validated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamps();
         });
     }
 

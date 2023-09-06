@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::post('/email/test-link', [MailController::class, 'sendEmailWithTestLink']);
 });
 
+//TODO ADD TO PATIENT MIDDLEWARE GROUP
 Route::prefix('/tests')->controller(TestsController::class)->name('tests.')->group(function () {
   Route::get('/{token}', 'show')->name('show');
   Route::put('/{id}', 'update')->name('update');

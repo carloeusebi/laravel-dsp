@@ -24,8 +24,11 @@
         rel="stylesheet">
     <!-- abhaya -->
     <link href="https://fonts.googleapis.com/css?family=Abhaya+Libre:regular,500,600,700,800" rel="stylesheet" />
-
+    <!-- icon -->
     <link rel="icon" href="{{ asset('images/Favicon.png') }}" type="image/png">
+
+    <!-- fontaweseme -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!--  my library -->
     <link rel="stylesheet" href="{{ asset('css/mylibrary.css') }}">
     <!-- animations -->
@@ -34,8 +37,4 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <!-- scripts -->
     <script defer src="{{ asset('js/scripts.js') }}"></script>
-    <!-- fontaweseme -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css'
-        integrity='sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw=='
-        crossorigin='anonymous' />
 </head>

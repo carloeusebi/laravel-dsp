@@ -10,5 +10,7 @@ Route::prefix('/artisan')->group(function () {
     Artisan::call('view:cache');
     Artisan::call('route:cache');
     Artisan::call('config:cache');
+
+    return response(status: 204);
   });
 });
