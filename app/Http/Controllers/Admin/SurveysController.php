@@ -102,7 +102,7 @@ class SurveysController extends Controller
         $survey = Survey::with('patient')->with('questions')->findOrFail($id);
 
         if (!$survey->completed) {
-            return response(['message' => "Questo test non è stato ancora completato."], 404);
+            return response(['message' => "Questo test non è stato ancora completato."], 204);
         }
 
         foreach ($survey->questions as &$question) {
