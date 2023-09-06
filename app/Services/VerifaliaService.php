@@ -62,18 +62,22 @@ class VerifaliaService
       ]
     ];
 
-    // calls the api to perform validation
-    $response = $this->client->post($this->url . 'email-validations', [
-      'headers' => [
-        'Authorization' => $this->auth,
-        'Content-Type' => 'application/json'
-      ],
-      'json' => $payload
-    ]);
+    try {
+      // calls the api to perform validation
+      $response = $this->client->post($this->url . 'email-validations', [
+        'headers' => [
+          'Authorization' => $this->auth,
+          'Content-Type' => 'application/json'
+        ],
+        'json' => $payload
+      ]);
 
-    // reads response.
-    $id = json_decode($response->getBody(), true)['overview']['id'];
-    $response = $this->client->get($this->url . "email-validations/$id/entries/0", ['headers' => ['Authorization' => $this->auth]]);
+      // reads response.
+      $id = json_decode($response->getBody(), true)['overview']['id'];
+      $response = $this->client->get($this->url . "email-validations/$id/entries/0", ['headers' => ['Authorization' => $this->auth]]);
+    } catch (\Exception) {
+      return true;
+    }
 
     $result = json_decode($response->getBody(), true)['data'][0]['classification'];
 
@@ -91,7 +95,11 @@ class VerifaliaService
    */
   private function hasCredits(): bool
   {
-    $response = $this->client->get($this->url . 'credits/balance', ['headers' => ['Authorization' => $this->auth]]);
+    try {
+      $response = $this->client->get($this->url . 'credits/balance', ['headers' => ['Authorization' => $this->auth]]);
+    } catch (\Exception) {
+      return false;
+    }
 
     $free_credits = (int) json_decode($response->getBody(), true)['freeCredits'];
 

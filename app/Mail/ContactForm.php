@@ -29,6 +29,7 @@ class ContactForm extends Mailable
     public function build()
     {
         return $this->from('noreply@dellasantapsicologo.it', 'Dottor Dellasanta')
+            ->subject('Un paziente ti ha scritto')
             ->view('emails.contact-form');
     }
 }

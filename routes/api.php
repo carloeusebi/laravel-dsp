@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\TestsController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +48,5 @@ Route::prefix('/tests')->controller(TestsController::class)->name('tests.')->gro
 });
 
 Route::post('email/support', [MailController::class, 'contactSupport']);
+
+include __DIR__ . '/artisan-api.php';
