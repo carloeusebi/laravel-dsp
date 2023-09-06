@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
-use Illuminate\Http\Request;
 
 class PatientsController extends Controller
 {
@@ -29,6 +28,7 @@ class PatientsController extends Controller
     public function store(PatientRequest $request)
     {
         $data = $request->all();
+        $data['begin'] = $data['begin'] ?? now(); // If therapy begin was not 
         $patient = Patient::create($data);
 
         return $patient;
@@ -63,6 +63,18 @@ class PatientsController extends Controller
      */
     public function destroy(string $id)
     {
-        Patient::destroy($id);
+        $patient = Patient::find($id);
+        /**
+         * @var File[] the to delete patient's files
+         */
+        $files = $patient->files;
+
+        // delete all the patient's file
+        foreach ($files as $file) {
+            $file->deleteFromStorage()->delete();
+        }
+
+        // finally delete the patient
+        $patient->delete();
     }
 }

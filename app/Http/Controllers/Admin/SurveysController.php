@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\Results;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SurveyRequest;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
@@ -21,8 +20,15 @@ class SurveysController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SurveyRequest $request)
+    public function store(Request $request)
     {
+        //validation
+        $request->validate([
+            'title' => 'required|string|max:80',
+            'patient_id' => 'required|integer',
+            'questionIds' => 'required',
+        ]);
+
         $data = $request->all();
         $survey = new Survey($data);
         $survey->token = $survey->generateToken();

@@ -19,7 +19,7 @@ class FilesController extends Controller
         $file = $request->file('file');
         $file_name = $file->getClientOriginalName();
         $file_type = $file->getClientOriginalExtension();
-        $file_path = $file->store();
+        $file_path = $file->store('uploads');
 
         $id = File::insertGetId([
             'path' => $file_path,
@@ -51,10 +51,8 @@ class FilesController extends Controller
     {
         $file = File::findOrFail($id);
 
-        $file_path = $file->path;
-
         // delete the file from the storage
-        Storage::delete($file_path);
+        $file->deleteFromStorage();
 
         // delete the database record
         $file->delete();

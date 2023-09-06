@@ -54,7 +54,7 @@ class QuestionsController extends Controller
         }
 
         // sync the tags
-        $tagIds = array_map(fn ($tag) => $tag['id'], $request->tags) ?? [];
+        $tagIds = $request->tags ? array_map(fn ($tag) => $tag['id'], $request->tags) : [];
         $question->tags()->sync($tagIds);
         $question->tags = $question->tags()->get();
 
