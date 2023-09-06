@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Question;
+use App\Services\QuestionVersionControlService;
 use Illuminate\Http\Request;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
@@ -39,18 +40,21 @@ class QuestionsController extends Controller
     public function update(QuestionRequest $request, string $id)
     {
         $data = $request->all();
-
-        $question = Question::find($id);
+        /**
+         * @var Question
+         */
+        $existingQuestion = Question::findOrFail($id);
 
         // if questionnaire is currently used in surveys, hide it and make a copy
-        if ($question->isInSurveys()) {
-            $question->not_current = true;
-            $question->update();
-            $question->tags()->detach(); // also detach all tags
+        if ($existingQuestion->isInSurveys() && $existingQuestion->differencesAreBigEnough($data)) {
+            $existingQuestion->not_current = true;
+            $existingQuestion->tags()->detach(); // also detach all tags
+            $existingQuestion->update();
 
             $question = Question::create($data);
         } else {
-            $question->update($data);
+            $existingQuestion->update($data);
+            $question = $existingQuestion;
         }
 
         // sync the tags

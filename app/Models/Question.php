@@ -36,6 +36,24 @@ class Question extends Model
 
 
     /**
+     * The Surveys that contain the Question.
+     */
+    public function surveys()
+    {
+        return $this->belongsToMany(Survey::class);
+    }
+
+
+    /**
+     * The tags that belongs the Questionnaire.
+     */
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+
+    /**
      * Binds the Answers value (which are stored in the pivot table) inside the Questionnaire's item as 'answer' key.
      */
     public function bindAnswers()
@@ -62,16 +80,6 @@ class Question extends Model
         return $this->surveys()->count() > 0;
     }
 
-
-    /**
-     * The tags that belongs the Questionnaire
-     */
-    public function tags(): BelongsToMany
-    {
-        return $this->belongsToMany(Tag::class);
-    }
-
-
     /**
      * Returns the minimum and maximum values for the Questionnaire's items.
      * @return array [min, max]
@@ -97,12 +105,19 @@ class Question extends Model
         return [$min, $max];
     }
 
-
     /**
-     * The Surveys that contain the Question
+     * Compares itself with a new request data, and checks if differences are big enough to justify creating a new copy in the database for version control.
      */
-    public function surveys()
+    public function differencesAreBigEnough(array $data): bool
     {
-        return $this->belongsToMany(Survey::class);
+        // checks if type is different
+        if ($this->type !== $data['type'])
+            return true;
+
+        // checks if number of items is different
+        if ($this->type === 'MUL' || count($this->items) !== count($data['items']))
+            return true;
+
+        return false;
     }
 }
