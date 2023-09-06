@@ -21,7 +21,12 @@ class QuestionTagSeeder extends Seeder
                 $question_id = $data[0];
                 $tag_id = $data[1];
 
-                DB::table('question_tag')->insert(['question_id' => $question_id, 'tag_id' => $tag_id]);
+                DB::table('question_tag')->insert([
+                    'question_id' => $question_id,
+                    'tag_id' => $tag_id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
             }
             $first_line = false;
         }
