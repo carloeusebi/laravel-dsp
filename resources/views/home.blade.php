@@ -6,13 +6,17 @@
         <header id="hero">
             <div class="d-flex-lg justify-space-between">
                 <div class="col-50">
-                    <h3 class="mb-30">DR. Dellasanta Federico</h3>
-                    <h1 class="">Psicologo Psicoterapeuta <span>Cognitivo Comportamentale</span></h1>
-                    <p class="mb-50">
-                        Mi occupo di psicoterapia, consulenze psicologiche, sostegno e propongo percorsi individualizzati a
-                        Fano e online.
-                    </p>
-                    <a href="/contatti" class="btn mb-50">Prenota un appuntamento</a>
+                    <div class="hero-container">
+
+                        <h3 class="mb-30">DR. Dellasanta Federico</h3>
+                        <h1 class="">Psicologo Psicoterapeuta <span>Cognitivo Comportamentale</span></h1>
+                        <p class="mb-50">
+                            Mi occupo di psicoterapia, consulenze psicologiche, sostegno e propongo percorsi
+                            individualizzati a
+                            Fano e online.
+                        </p>
+                        <a href="/contatti" class="btn mb-50">Prenota un appuntamento</a>
+                    </div>
                 </div>
                 <div class="col-50">
                     <figure class="d-flex justify-end">
