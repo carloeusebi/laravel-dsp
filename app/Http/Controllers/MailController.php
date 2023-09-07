@@ -31,7 +31,7 @@ class MailController extends Controller
             'link' => 'required|url'
         ]);
         $data = $request->all();
-        $emailTo = env('MAIL_TO');
+        $emailTo = $data['email_to'];
 
         Mail::to($emailTo)->send(new LinkToTest($data));
     }
