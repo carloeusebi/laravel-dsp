@@ -14,7 +14,8 @@ class Survey extends Model
 
 
     /**
-     * Checks if survey is completed
+     * Sets the completed attribute. Checks if within the survey's questions there is none that is not completed.
+     * Checks the completed column in the pivot question_survey table.
      */
     public function isCompleted(): bool
     {

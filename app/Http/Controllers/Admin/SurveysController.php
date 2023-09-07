@@ -25,7 +25,7 @@ class SurveysController extends Controller
         //validation
         $request->validate([
             'title' => 'required|string|max:80',
-            'patient_id' => 'required|integer',
+            'patient_id' => 'required|exists:patients,id',
             'questionIds' => 'required',
         ]);
 
@@ -34,9 +34,7 @@ class SurveysController extends Controller
         $survey->token = $survey->generateToken();
         $survey->save();
 
-        foreach ($request->questionIds as $questionId) {
-            $survey->questions()->attach($questionId);
-        }
+        $survey->questions()->attach($request->questionIds);
 
         $survey->patient = $survey->patient()->first();
 

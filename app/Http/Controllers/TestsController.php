@@ -21,6 +21,7 @@ class TestsController extends Controller
         if (!$survey) return response()->json('No Test found', 404);
 
         foreach ($survey->questions as &$question) {
+            // binds the answer from the pivot column
             $question->bindAnswers();
         }
 
