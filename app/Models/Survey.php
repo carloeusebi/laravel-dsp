@@ -19,7 +19,7 @@ class Survey extends Model
      */
     public function isCompleted(): bool
     {
-        return $this->questions()->withPivotValue('completed', 0)->get()->isEmpty();
+        return $this->questions()->withPivotValue('completed', 1)->get()->count() === $this->questions;
     }
 
     public function patient()
