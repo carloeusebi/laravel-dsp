@@ -59,6 +59,7 @@ class Question extends Model
     public function bindAnswers()
     {
         $answers = $this->pivot->answers ?? [];
+        $this->completed = $this->pivot->completed;
 
         $this->items = array_map(function ($item) use ($answers) {
             if ($answers) {
