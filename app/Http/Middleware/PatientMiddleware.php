@@ -19,6 +19,9 @@ class PatientMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!$request->expectsJson())
+            abort(403);
+
         $token = $request->token ?? null;
         $isAuth = Survey::where('token', '=', $token)->get()->count();
         if (!$isAuth) abort(response()->json(['message' => 'Invalid Token'], 401));
