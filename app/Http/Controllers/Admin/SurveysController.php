@@ -72,7 +72,11 @@ class SurveysController extends Controller
             $itemsWithAnswer = array_values(array_filter($question['items'], fn ($item) => isset($item['answer'])));
 
             // crates an array of answers in the form [itemId, answer]
-            $answers = array_map(fn ($item) => ['id' => $item['id'], 'answer' => $item['answer']], $itemsWithAnswer);
+            $answers = array_map(function ($item) {
+                $answer = ['id' => $item['id'], 'answer' => $item['answer']];
+                if (isset($item['comment'])) $answer['comment'] = $item['comment'];
+                return $answer;
+            }, $itemsWithAnswer);
 
             //updates the pivot table
             $isQuestionCompleted = count($answers) === count($question['items']);

@@ -66,6 +66,8 @@ class Question extends Model
                 $key = array_search($item['id'], array_column($answers, 'id'));
                 if ($key !== false) { // not (!$key) because $key could be 0!
                     $item['answer'] = $answers[$key]['answer'];
+                    if (isset($answers[$key]['comment']))
+                        $item['comment'] = $answers[$key]['comment'];
                 }
             }
             return $item;
