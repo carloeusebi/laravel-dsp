@@ -9,7 +9,7 @@ use App\Services\QuestionVersionControlService;
 use Illuminate\Http\Request;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
-class QuestionsController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.

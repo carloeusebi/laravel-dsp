@@ -7,7 +7,7 @@ use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class FilesController extends Controller
+class FileController extends Controller
 {
     public function upload(Request $request)
     {

@@ -8,7 +8,7 @@ use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
-class TestsController extends Controller
+class TestController extends Controller
 {
     public function show(string $token)
     {

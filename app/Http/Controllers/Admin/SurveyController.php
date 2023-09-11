@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
-class SurveysController extends Controller
+class SurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
