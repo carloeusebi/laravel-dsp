@@ -17,7 +17,8 @@ class Results
   public function __construct(Survey $survey)
   {
     $this->survey = $survey;
-    $this->patient = $survey->patient;
+    if ($survey->patient)
+      $this->patient = $survey->patient;
     return $this;
   }
 
@@ -29,7 +30,7 @@ class Results
   {
     $survey = $this->survey;
     foreach ($survey->questions as &$question) {
-      $question->variables = $this->calculateQuestionScore($question);
+      $question->variables = $question->variables ? $this->calculateQuestionScore($question) : [];
     }
 
     return $survey;
