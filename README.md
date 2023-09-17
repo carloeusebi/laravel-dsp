@@ -37,8 +37,12 @@ Make sure you have environment setup properly. You will need MySQL, PHP8, Node.j
 
 ## Install Laravel Website + API
 
-1. Download the project (or clone using GIT) and save it in your htdocs folder
+1. Download the project (or clone using GIT)
 2. Copy `.env.example` into `.env` and configure database credentials
 3. In `.env` configure your email credentials if you want to be able to send emails
 4. Run `composer install`
 5. Run migrations and seeds `php artisan migrate --seed`
+
+## Install Vue.js Admin Panel
+
+Instructions: https://github.com/carloeusebi/vue-dsp

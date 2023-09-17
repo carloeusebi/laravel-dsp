@@ -28,7 +28,7 @@ html {
 }
 
 body {
-    font-family: roboto, sans-serif
+    font-family: 'Roboto', serif
 }
 
 body.wait,
@@ -53,7 +53,7 @@ p {
 
 h1 {
     color: var(--footer-color);
-    font-family: Abhaya Libre, serif;
+    font-family: 'Abhaya Libre', sans-serif;
     font-size: 48px;
     font-weight: bolder;
     line-height: .9;
