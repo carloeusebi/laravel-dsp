@@ -127,6 +127,6 @@ class VerifaliaService
 
   private function logIssue(string $message)
   {
-    DB::table('logs')->insert(['message' => $message]);
+    DB::table('logs')->insert(['message' => $message, 'created_at' => now()]);
   }
 }
