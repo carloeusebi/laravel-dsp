@@ -123,21 +123,25 @@ class Results
    */
   private function hasScored(int $score, array $variable, array $cutoff): bool
   {
-    $patient = $this->patient;
 
     $from = $cutoff['from'];
     $to = $cutoff['to'];
 
-    //Some cutoffs are gender based, for example male has a cutoff of 6 and female of 9
-    if (isset($variable['genderBased']) && $variable['genderBased']) {
-      // if the cutoff is gender based and the patient doesn't have a sex assigned throws an error.
-      if (!isset($patient->sex) || !in_array($patient->sex, ['M', 'F', 'O']))
-        throw new Exception("Uno dei questionari ha cutoffs basati sul sesso ma {$patient->fname} {$patient->lname} non ha nessun sesso assegnato.");
 
-      // if cutoff is gender based assign to form and to the values for female.
-      if ($patient->sex === 'F') {
-        $from = $cutoff['femFrom'] ?? null;
-        $to = $cutoff['femTo'] ?? null;
+    if (isset($this->patient)) {
+
+      $patient = $this->patient;
+      //Some cutoffs are gender based, for example male has a cutoff of 6 and female of 9
+      if (isset($variable['genderBased']) && $variable['genderBased']) {
+        // if the cutoff is gender based and the patient doesn't have a sex assigned throws an error.
+        if (!isset($patient->sex) || !in_array($patient->sex, ['M', 'F', 'O']))
+          throw new Exception("Uno dei questionari ha cutoffs basati sul sesso ma {$patient->fname} {$patient->lname} non ha nessun sesso assegnato.");
+
+        // if cutoff is gender based assign to form and to the values for female.
+        if ($patient->sex === 'F') {
+          $from = $cutoff['femFrom'] ?? null;
+          $to = $cutoff['femTo'] ?? null;
+        }
       }
     }
 
